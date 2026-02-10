@@ -1,0 +1,12 @@
+/oneoffice-gateway/
+/oneoffice-identity-service/
+/oneoffice-resource-service/
+/oneoffice-admin-client/
+
+/postgres_data/
+.env
+
+.idea/
+*.iml
+out/
+gen/

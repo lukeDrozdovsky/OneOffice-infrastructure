@@ -1,0 +1,71 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: oneoffice-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: oneoffice-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8090:80"
+    depends_on:
+      - postgres
+
+  identity-service:
+    build: ./oneoffice-identity-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/one_office_identity_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  resource-service:
+    build: ./oneoffice-resource-service
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/one_office_resource_service_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  gateway:
+    build: ./oneoffice-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - IDENTITY_SERVICE_URL=http://identity-service:8081
+      - RESOURCE_SERVICE_URL=http://resource-service:8082
+    depends_on:
+      - identity-service
+      - resource-service
+
+  admin-client:
+    build: ./oneoffice-admin-client
+    ports:
+      - "3000:80"
