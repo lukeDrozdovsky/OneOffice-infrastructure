@@ -13,7 +13,19 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL,
     role VARCHAR(255) NOT NULL,
     active BOOLEAN NOT NULL,
-    phone_number VARCHAR(255)
+    phone_number VARCHAR(255),
+    created_at TIMESTAMP NOT NULL
+    email_verified boolean NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE IF NOT EXISTS email_confirmation_tokens (
+    id BIGSERIAL PRIMARY KEY,
+    token_hash VARCHAR(64) NOT NULL UNIQUE,
+    user_id BIGINT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    expires_at TIMESTAMP NOT NULL,
+    confirmed_at TIMESTAMP,
+    CONSTRAINT fk_email_confirmation_tokens_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 \c one_office_resource_service_db;
