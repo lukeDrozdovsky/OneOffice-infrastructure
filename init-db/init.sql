@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS users (
     role VARCHAR(255) NOT NULL,
     active BOOLEAN NOT NULL,
     phone_number VARCHAR(255),
-    created_at TIMESTAMP NOT NULL
+    created_at TIMESTAMP NOT NULL,
     email_verified boolean NOT NULL DEFAULT FALSE
 );
 
