@@ -1,7 +1,9 @@
 /oneoffice-gateway/
 /oneoffice-identity-service/
 /oneoffice-resource-service/
+/oneoffice-booking-service/
 /oneoffice-admin-client/
+/oneoffice-web-client/
 
 /postgres_data/
 .env
