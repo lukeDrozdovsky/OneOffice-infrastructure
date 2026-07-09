@@ -1,6 +1,6 @@
 # OneOffice - System Zarządzania Przestrzenią Biurową
 
-Aplikacja typu SAAS do rezerwacji biurek i sal konferencyjnych, realizowana w ramach przedmiotu "Technologie backendowe i orkiestracja usług IT".
+Aplikacja typu SaaS do rezerwacji biurek i sal konferencyjnych.
 
 ## 🚀 Architektura Systemu
 System oparty jest na architekturze mikroserwisów z wykorzystaniem:
@@ -18,9 +18,14 @@ System oparty jest na architekturze mikroserwisów z wykorzystaniem:
    docker-compose up --build
    ```
 2. **Po zbudowaniu**
-- Można skorzystać z gotowego użytkownika (admina):
+- Można skorzystać z gotowego użytkownika dla admina:
 ```
 login: admin@oneoffice.pl
+hasło: H@slo12345
+```
+- Lub zwykłego użytkownika:
+```
+login: lukasz.drozdowski@oneoffice.pl
 hasło: H@slo12345
 ```
    # Swagger UI:
@@ -41,8 +46,14 @@ password: admin
 ```
 
 # Frontend:
+- Panel Admina
 ```
 http://localhost:3000
+```
+
+- Panel Użytkownika
+```
+http://localhost:3001
 ```
 
 # Gateway:
@@ -58,6 +69,11 @@ http://localhost:8081
 # Resource-service:
 ```
 http://localhost:8082
+```
+
+# Booking-service:
+```
+http://localhost:8083
 ```
 
 # Database:
