@@ -90,7 +90,6 @@ services:
     build: ./oneoffice-admin-client
     ports:
       - "3000:80"
-      -
   web-client:
     build: ./oneoffice-web-client
     ports:
