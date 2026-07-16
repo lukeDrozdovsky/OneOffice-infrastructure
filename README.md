@@ -14,6 +14,7 @@ The system is based on a microservices architecture using:
 - **Database:** PostgreSQL (managed by Flyway)
 - **Orchestration:** Docker & Docker Compose
 - **Communication:** API Gateway (entry point)
+- **Email Testing:** MailHog  as a tool for catching outgoing emails
 
 ## 🏁 Quick start (Docker)
 
@@ -89,4 +90,9 @@ http://postgres:5432/postgres
 ```
 user: postgres
 password: postgres
+```
+# MailHog (Local SMTP testing):
+```
+- Web UI: http://localhost:8025
+- SMTP Server Port: 1025
 ```
