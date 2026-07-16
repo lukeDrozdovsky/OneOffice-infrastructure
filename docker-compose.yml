@@ -85,7 +85,6 @@ services:
       - identity-service
       - resource-service
       - booking-service
-
   admin-client:
     build: ./oneoffice-admin-client
     ports:
