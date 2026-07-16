@@ -1,29 +1,34 @@
-# OneOffice - System Zarządzania Przestrzenią Biurową
+# 🏢 OneOffice - Office Space Management System
 
-Aplikacja typu SaaS do rezerwacji biurek i sal konferencyjnych.
+A SaaS application for booking desks and conference rooms.
 
-## 🚀 Architektura Systemu
-System oparty jest na architekturze mikroserwisów z wykorzystaniem:
+> **Note for Reviewers:**  
+> I am fully aware that a microservices architecture for an application of this scale is a bit of overengineering.
+> I chose this approach on purpose to increase the friction in my learning process, challenge myself,
+> and gain valuable, practical experience with distributed systems.
+
+## 🚀 System Architecture
+The system is based on a microservices architecture using:
 - **Backend:** Java 21, Spring Boot 3.4.4
 - **Frontend:** React.js
-- **Baza danych:** PostgreSQL (zarządzany przez Flyway)
-- **Orkiestracja:** Docker & Docker Compose
-- **Komunikacja:** API Gateway (punkt wejścia)
+- **Database:** PostgreSQL (managed by Flyway)
+- **Orchestration:** Docker & Docker Compose
+- **Communication:** API Gateway (entry point)
 
-## 🏁 Szybki start (Docker)
+## 🏁 Quick start (Docker)
 
-1. **Budowanie aplikacji**
-- Komenda w głównym katalogu:
-   ```bash
-   docker-compose up --build
-   ```
-2. **Po zbudowaniu**
-- Można skorzystać z gotowego użytkownika dla admina:
+1. **Building the application**
+- Command in the root directory:
+```bash
+docker-compose up --build
+```
+2. **After building**
+- You can use the pre-configured admin user:
 ```
 login: admin@oneoffice.pl
 hasło: H@slo12345
 ```
-- Lub zwykłego użytkownika:
+- Or a regular user:
 ```
 login: lukasz.drozdowski@oneoffice.pl
 hasło: H@slo12345
@@ -46,12 +51,12 @@ password: admin
 ```
 
 # Frontend:
-- Panel Admina
+- Admin Panel
 ```
 http://localhost:3000
 ```
 
-- Panel Użytkownika
+- Uesr Panel
 ```
 http://localhost:3001
 ```
